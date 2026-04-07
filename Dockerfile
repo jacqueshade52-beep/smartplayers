@@ -29,4 +29,4 @@ RUN chown -R www-data:www-data /var/www/html \
 EXPOSE 8000
 
 # Commande de démarrage
-CMD php artisan serve --port=$PORT --host=0.0.0.0
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-10000}

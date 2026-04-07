@@ -1,13 +1,10 @@
 services:
   - type: web
     name: smartplayers
-    runtime: docker
+    runtime: image
     repo: https://github.com/jacqueshade52-beep/smartplayers
     plan: free
-    dockerCommand: |
-      composer install --no-dev --optimize-autoloader
-      php artisan key:generate
-      php artisan serve --port=$PORT --host=0.0.0.0
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
         value: production
