@@ -1,7 +1,10 @@
 services:
   - type: web
     name: smartplayers
-    runtime: php
+    runtime: image
+    repo: https://github.com/jacqueshade52-beep/smartplayers
+    image:
+      url: lorisleiva/laravel-docker:8.1
     buildCommand: composer install --no-dev --optimize-autoloader
     startCommand: php artisan serve --port=$PORT --host=0.0.0.0
     envVars:
