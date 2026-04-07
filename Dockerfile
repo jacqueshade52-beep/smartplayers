@@ -1,10 +1,12 @@
 FROM php:8.2-apache
 
-# Installation des extensions PHP nécessaires pour Laravel
-RUN docker-php-ext-install pdo pdo_mysql
-
-# Activation du mod rewrite pour Apache
-RUN a2enmod rewrite
+# Installation des dépendances système nécessaires (git, unzip, etc.)
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install zip pdo pdo_mysql \
+    && a2enmod rewrite
 
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
